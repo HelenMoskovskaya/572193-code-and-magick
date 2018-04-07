@@ -12,7 +12,7 @@ userDialog.classList.remove('hidden');
 
 // находим элемент, в который будем добавлять другие элементы
 
-var similarListElement = document.querySelector('.setup-similar-list');
+var similarListElement = userDialog.querySelector('.setup-similar-list');
 
 // находим шаблон и конкретный элемент, который нужно скопировать
 
@@ -20,15 +20,14 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template').c
 
 // показываем блок .setup-similar
 
-userDialog = document.querySelector('.setup-similar').classList.remove('hidden');
+userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 
 // случайный выбор
 
-var randomValue = function (arr) {
-  var min = 0;
+var getRandomValue = function (arr) {
   var max = arr.length - 1;
-  var rand = min + Math.random() * (max + 1 - min);
+  var rand = Math.random() * (max + 1);
   rand = Math.floor(rand);
   return rand;
 };
@@ -39,9 +38,9 @@ var getWizards = function () {
   var wizards = [];
   for (var i = 0; i < 4; i++) {
     wizards[i] = {
-      name: WIZARD_NAME[randomValue(WIZARD_NAME)] + ' ' + WIZARD_SURNAME[randomValue(WIZARD_SURNAME)],
-      coatColor: COAT_COLOR[randomValue(COAT_COLOR)],
-      eyesColor: EYES_CLOR[randomValue(EYES_CLOR)]
+      name: WIZARD_NAME[getRandomValue(WIZARD_NAME)] + ' ' + WIZARD_SURNAME[getRandomValue(WIZARD_SURNAME)],
+      coatColor: COAT_COLOR[getRandomValue(COAT_COLOR)],
+      eyesColor: EYES_CLOR[getRandomValue(EYES_CLOR)]
     };
   }
   return wizards;
@@ -69,6 +68,5 @@ var createWizards = function (wizards) {
   similarListElement.appendChild(fragment); // вместо фргамента вставляются элементы списка
 };
 
-var wizardShow = getWizards();
-createWizards(wizardShow);
+createWizards(getWizards());
 
