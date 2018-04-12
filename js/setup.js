@@ -106,33 +106,38 @@ var closePopup = function () {
 
 // Обработчик клика на иконку = открытие Popup
 
-setupOpen.addEventListener('click', function () {
+var onButtonOpenClick = function () {
   openPopup();
-});
+};
+setupOpen.addEventListener('click', onButtonOpenClick);
 
 // Обработчик доступности = открытие Popup клавишей Enter
 
-setupOpen.addEventListener('keydown', function (evt) {
+var onButtonOpenTab = function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
-});
+};
+
+setupOpen.addEventListener('keydown', onButtonOpenTab);
 
 // Обработчик клика на крестик = закрытие Popup
 
-
-setupClose.addEventListener('click', function () {
+var onButtonCloseClick = function () {
   closePopup();
-});
+};
+
+setupClose.addEventListener('click', onButtonCloseClick);
 
 // Обработчик доступности = закрытие Popup клавишей Enter
 
-
-setupClose.addEventListener('keydown', function (evt) {
+var onButtonCloseTab = function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
-});
+};
+
+setupClose.addEventListener('keydown', onButtonCloseTab);
 
 // Изменение цвета глаз мага
 
@@ -140,17 +145,22 @@ var wizardSetup = document.querySelector('.setup-wizard');
 var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
 var inputEyes = document.querySelector('input[name="eyes-color"]');
 
-var onWizardSetupClick = function () {
+var changeWizardEyes = function () {
   wizardEyes.style.fill = EYES_COLOR[getRandomValue(EYES_COLOR)];
   inputEyes.value = EYES_COLOR[getRandomValue(EYES_COLOR)];
 };
 
-wizardSetup.addEventListener('click', onWizardSetupClick);
-wizardSetup.addEventListener('keydown', function (evt) {
+var onWizardClick = function () {
+  changeWizardEyes();
+};
+wizardSetup.addEventListener('click', onWizardClick);
+
+var onWizardTab = function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
-    onWizardSetupClick();
+    changeWizardEyes();
   }
-});
+};
+wizardSetup.addEventListener('keydown', onWizardTab);
 
 // Изменение цвета фаербола мага
 
@@ -159,17 +169,22 @@ var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var fireballSetup = document.querySelector('.setup-fireball-wrap');
 var inputFireball = fireballSetup.querySelector('input');
 
-var onFireballColorClick = function () {
+var changeFireballColor = function () {
   fireballSetup.style.backgroundColor = FIREBALL_COLOR[getRandomValue(FIREBALL_COLOR)];
   inputFireball.value = fireballSetup;
 };
 
-fireballSetup.addEventListener('click', onFireballColorClick);
-fireballSetup.addEventListener('keydown', function (evt) {
+var onFireballClick = function () {
+  changeFireballColor();
+};
+fireballSetup.addEventListener('click', onFireballClick);
+
+var onFireballTab = function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
-    onFireballColorClick();
+    changeFireballColor();
   }
-});
+};
+fireballSetup.addEventListener('keydown', onFireballTab);
 
 // Валидация формы
 
