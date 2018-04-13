@@ -172,7 +172,7 @@ var inputFireball = fireballSetup.querySelector('input');
 
 var changeFireballColor = function () {
   var colorFireballNew = FIREBALL_COLOR[getRandomValue(FIREBALL_COLOR)];
-  fireballSetup.style.backgroundColor = colorFireballNew
+  fireballSetup.style.backgroundColor = colorFireballNew;
   inputFireball.value = colorFireballNew;
 };
 
